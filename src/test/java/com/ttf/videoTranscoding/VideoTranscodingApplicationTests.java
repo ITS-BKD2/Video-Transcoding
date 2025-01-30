@@ -1,10 +1,10 @@
-package com.ttf.videostream.videostream;
+package com.ttf.videoTranscoding;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VideostreamApplicationTests {
+class VideoTranscodingApplicationTests {
 
 	@Test
 	void contextLoads() {

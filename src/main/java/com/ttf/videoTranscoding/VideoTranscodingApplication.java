@@ -1,13 +1,13 @@
-package com.ttf.videostream.videostream;
+package com.ttf.videoTranscoding;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class VideostreamApplication {
+public class VideoTranscodingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VideostreamApplication.class, args);
+		SpringApplication.run(VideoTranscodingApplication.class, args);
 	}
 
 }
