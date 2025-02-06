@@ -5,3 +5,5 @@ leader of the Streaming microservice.
 
 Similary the use of sockets is to be further discussed with the autorization
 team.
+
+rick test 0002
