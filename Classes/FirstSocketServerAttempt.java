@@ -12,7 +12,35 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 
-
+//The server was made with dynamic port binding in mind, as the startServer
+//function increments the integer passed to it every time it finds a port that
+//is already in use. This may cause problem with containerization, and as such
+//should be changed if dynamic port binding cannot happen for whatever reason
+//It should be noted that the dynamic port binding ONLY happens when the first
+//integer passed corresponds to an already busy port, so as long as the other
+//service pass correct arguments this could be avoided with the proper
+//docker.config
+//Still it is a but of an experiment
+//Following a version of startServer without increments, written with Vim.
+//(be wary of spelling mistakes)
+/*
+public int startServer(int portNumber) throws IOException {
+  int currentPort= portNumber;
+  for(;;) {
+    try {
+      serverSocket = new ServerSocket(currentPort);
+      this.port = currentPort;
+      break; //breaks when the port has been bound succesfully
+    } catch (BindException e) {
+        throw new IOException("The port is already busy or the binding was unsuccesfull");
+    }
+  }
+  new Thread(this::serverLoop).start(); //opens a thread, could be turned into
+                                        //a virtual thread for better
+                                        //scalability
+  return this.port;
+}
+*/
 public class FirstSocketServerAttempt {
 	private ServerSocket serverSocket;
 	private int port; //= 8080;
