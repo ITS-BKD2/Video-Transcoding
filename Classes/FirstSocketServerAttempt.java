@@ -1,3 +1,7 @@
+//package videoTranscoding.something
+//
+//This code was handwritten using Vim, and as such needs to be integrated with
+//the rest of the Sprint Microservice
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,8 +18,8 @@ public class FirstSocketServerAttempt {
 	private int port; //= 8080;
 
 	public int startServer(int portNumber) throws IOException {
-		if (portNumber < 1024 || portNumber >= 65535) {
-			throw new IllegalArgumentException("Port muste be between 1024 and 65535");
+		if (portNumber < 1024 || portNumber >= 49151) {
+			throw new IllegalArgumentException("Port muste be between 1024 and 49151");
 		}
 		int currentPort = portNumber;
         while (true) {

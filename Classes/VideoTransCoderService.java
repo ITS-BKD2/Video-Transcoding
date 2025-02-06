@@ -1,6 +1,9 @@
-package com.example.video-transcoding.service;
+//package com.example.video-transcoding.service;
+//
+//This code was handwritten using Vim, and as such needs to be integrated with
+//the rest of the Sprint Microservice
 
-import com.example.videoapp.service.VideoTranscoderService;
+//import com.example.videoapp.service.VideoTranscoderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
