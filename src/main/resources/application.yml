@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: videoTranscoding
+server:
+  port: 8084
+
+eureka:
+  client:
+    enabled: true
