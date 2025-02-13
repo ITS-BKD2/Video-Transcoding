@@ -66,7 +66,7 @@ public class VideoTranscodingController {
     @GetMapping("/getAll")
     public List<String> getAllServices() {
         RestTemplate restTemplate = new RestTemplate();
-        String[] serviceNames = {"VideoUpload", "VIDEOTRANSCODING", "Comments", "Users", "Streaming"};
+        String[] serviceNames = {"VIDEOUPLOAD", "VIDEOTRANSCODING", "COMMENTS", "USERS", "STREAMING"};
         List<String> allResponses = new ArrayList<>();
 
         for (String serviceName : serviceNames) {
