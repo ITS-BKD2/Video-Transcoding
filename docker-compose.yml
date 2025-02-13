@@ -38,3 +38,9 @@ services:
     ports:
       - "8085:8080"
     container_name: video-streaming
+
+  eureka:
+    image: ghcr.io/its-bkd2/eureka:0.0.1
+    ports:
+      - "8761:8761"
+    container_name: eureka
