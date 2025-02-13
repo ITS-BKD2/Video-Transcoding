@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
+@RequestMapping
 public class VideoTranscodingController {
 
     private final DiscoveryClient discoveryClient;
@@ -26,24 +31,55 @@ public class VideoTranscodingController {
     public String helloWorld() {
         return "Hello world from " + appName;
     }
+//
+//    @GetMapping("/showServices")
+//    public String showServices() {
+//
+//        String[] services = {"VideoTranscoding", "VideoUpload", "Users", "Streaming", "Comments"};
+//
+//        for (String service : services) {
+//
+//            ServiceInstance serviceInstance = discoveryClient.getInstances(service).get(0);
+//            String ServiceResponse = restClient.get()
+//                    .uri(serviceInstance.getUri() + "/helloWorld")
+//                    .retrieve()
+//                    .body(String.class);
+//            return ServiceResponse;
+//
+//        }
+//        return null;
+//
+//    }
 
-    @GetMapping("/showServices")
-    public String showServices() {
+    @GetMapping("/gethello")
+    public String callHelloWorld(String word) {
 
-        String[] services = {"VideoTranscoding", "VideoUpload", "Users", "Streaming", "Comments"};
+        RestTemplate restTemplate = new RestTemplate();
+        //List<ServiceInstance> serviceInstance = discoveryClient.getInstances(appName);
 
-        for (String service : services) {
+        return restTemplate.getForObject("/helloworld", String.class);
 
-            ServiceInstance serviceInstance = discoveryClient.getInstances(service).get(0);
-            String ServiceResponse = restClient.get()
-                    .uri(serviceInstance.getUri() + "/helloWorld")
-                    .retrieve()
-                    .body(String.class);
-            return ServiceResponse;
+    }
 
+
+
+    @GetMapping("/getAll")
+    public List<String> getAllServices() {
+        RestTemplate restTemplate = new RestTemplate();
+        String[] serviceNames = {"VideoUpload", "VIDEOTRANSCODING", "Comments", "Users", "Streaming"};
+        List<String> allResponses = new ArrayList<>();
+
+        for (String serviceName : serviceNames) {
+            List<ServiceInstance> serviceInstances = discoveryClient.getInstances(serviceName);
+            if (!serviceInstances.isEmpty()) {
+                ServiceInstance serviceInstance = serviceInstances.get(0);
+                String serviceResponse = restTemplate.getForObject(serviceInstance.getUri() + "/helloworld", String.class);
+                allResponses.add("Response from " + serviceName + ": " + serviceResponse);
+            } else {
+                allResponses.add("Service " + serviceName + " not found.");
+            }
         }
-        return null;
-
+        return allResponses;
     }
 
 }
