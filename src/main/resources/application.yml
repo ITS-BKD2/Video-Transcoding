@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: videoTranscoding
+server:
+  port: 8084
