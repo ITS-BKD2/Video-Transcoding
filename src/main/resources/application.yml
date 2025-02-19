@@ -7,3 +7,5 @@ server:
 eureka:
   client:
     enabled: true
+    service-url:
+      defaultZone: ${EUREKA_ENDPOINT}/eureka/
